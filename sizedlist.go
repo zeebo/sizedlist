@@ -27,6 +27,14 @@ func NewBytesList(bytes int) *SizedList {
 	}
 }
 
+func NewSizedList(bytes, count int) *SizedList {
+	return &SizedList{
+		Data:  make([]Lenable, 0),
+		bytes: bytes,
+		count: count,
+	}
+}
+
 //Appends items 
 func (s *SizedList) Append(items ...Lenable) {
 	for _, i := range items {
@@ -39,6 +47,11 @@ func (s *SizedList) Append(items ...Lenable) {
 //Returns the number of bytes stored in it
 func (s SizedList) Len() int {
 	return s.byte_cache
+}
+
+func (s *SizedList) Clear() {
+	s.byte_cache = 0
+	s.Data = make([]Lenable, 0)
 }
 
 func (s *SizedList) enforce() {
